@@ -1,60 +1,81 @@
 package sort;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
- * ¹é²¢ÅÅĞò·¨
- * ½«Á½¸ö»ò¶à¸öÓĞĞò±íºÏ²¢³ÉÒ»¸öÓĞĞò±í
- * 	µİ¹é½«Ëü·Ö³ÉÁ½°ë·Ö±ğÅÅĞò£¬Ö®ºó½«½á¹ûºÏ²¢ÆğÀ´
+ * å½’å¹¶æ’åºæ³•
+ * å°†ä¸¤ä¸ªæˆ–å¤šä¸ªæœ‰åºè¡¨åˆå¹¶æˆä¸€ä¸ªæœ‰åºè¡¨
+ * 	é€’å½’å°†å®ƒåˆ†æˆä¸¤åŠåˆ†åˆ«æ’åºï¼Œä¹‹åå°†ç»“æœåˆå¹¶èµ·æ¥
  * @author Kylin
  *
  */
 public class MergeSort {
 	
 	/**
-	 * ÏàÁÚÓĞĞò¶ÎµÄºÏ²¢
-	 * @param a Ô­Êı¾İ 
-	 * @param r ±£´æºÏ²¢ºóµÄÊı¾İ
-	 * @param low ĞòÁĞÆğÊ¼ĞòºÅ
-	 * @param mid µÚÒ»¸öĞòÁĞ½áÊøµÄĞòºÅ
-	 * @param high ĞòÁĞµÄ³¤¶È
+	 * ç›¸é‚»æœ‰åºæ®µçš„åˆå¹¶
+	 * å°†a[low...mid]å’Œa[low+1...high]åˆå¹¶
+	 * @param a åŸæ•°æ® 
+	 * @param low åºåˆ—èµ·å§‹åºå·
+	 * @param mid ç¬¬ä¸€ä¸ªåºåˆ—ç»“æŸçš„åºå·
+	 * @param high åºåˆ—çš„é•¿åº¦
 	 */
-	public static void merge(int[] a, int[] r, int low, int mid, int high){
-		int i, j, k;
-		k = low;
-		i = low;
-		j = mid+1;
-		//±È½ÏÁ½¸öÓĞĞò±í
-		while(i <= mid && j <= high){
-			if(a[i] <= a[j]){
-				r[k++] = a[i++];
-			}
-			else{
-				r[k++] = a[j++];
-			}
-		}
-		while(i <= mid ){
-			r[k++] = a[i++];
-		}
-		while(j <= high){
-			r[k++] = a[j++];
-		}
+	public static void merge(int[] a, int low, int mid, int high){
+		// merge back to a[]
+        int[] b = Arrays.copyOf(a, a.length);
+		int i = low, j = mid+1;
+        for (int k = low; k <= high; k++) {
+            if(i > mid)             
+            	a[k] = b[j++];
+            else if (j > high)             
+            	a[k] = b[i++];
+            else if (less(b[j], b[i]))
+            	a[k] = b[j++];
+            else                           
+            	a[k] = b[i++];
+        }
 	}
 	
 	/**
-	 * Íê³É¶şÂ·ºÏ²¢µÄº¯Êı
+	 * æ’åºä¸»å‡½æ•°
 	 * @param a
-	 * @param r
 	 * @param n
-	 * @param len
 	 */
-	public static void mergePass(int a[], int r[], int n, int len){
-		
+	public static void sort(int[] a, int low, int high){
+		if(high <= low){
+			return;
+		}
+		int mid = low + (high - low) / 2;
+		sort(a, low, mid); //å·¦è¾¹æ’åº
+		sort(a, mid+1, high); //å³è¾¹æ’åº
+		merge(a, low, mid, high);
+        
 	}
+	
+	// is v < w ?
+    private static boolean less(int v, int w) {
+        return v - w < 0;
+    }
+    
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		//è¾“å…¥ç”¨äºéšæœºæ•°äº§ç”Ÿçš„æ•°æ®
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int min = sc.nextInt();
+		int max = sc.nextInt();
+		int[] array = RandomGenerator.generate(n, min, max);
+		System.out.println("-----æ’åºå‰-------");
+		System.out.println(Arrays.toString(array));
+		
+		MergeSort.sort(array, 0, n-1);
+		System.out.println("------æ’åºå------");
+		System.out.println(Arrays.toString(array));
+		
+		
 	}
 
 }
