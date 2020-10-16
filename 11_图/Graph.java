@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Í¼µÄÊı¾İ½á¹¹
+ * å›¾çš„æ•°æ®ç»“æ„
  * @author Kylin
  *
  */
 public class Graph {
-	private final int V; //Í¼µÄ¶¥µãÊı
-	private int E; //Í¼µÄ±ßÊı
-	private List<List> adj; //±£´æ±ßµÄÁĞ±í
+	private final int V; //å›¾çš„é¡¶ç‚¹æ•°
+	private int E; //å›¾çš„è¾¹æ•°
+	private List<List> adj; //ä¿å­˜è¾¹çš„åˆ—è¡¨
 	
 	public Graph(int v, int E, List<List> adj){
 		this.V = v;
@@ -53,13 +53,31 @@ public class Graph {
 		}
 	}
 	
+	public List getAllAdj(int v){
+		List<Integer> adjs = new ArrayList<Integer>();
+		for (int i = 0; i < E; i++) {
+			List edge = adj.get(i);
+			if(edge.contains(v)){
+				int vindex = edge.indexOf(v);
+				if(vindex == 0){
+					adjs.add((Integer) edge.get(1));
+				}
+				else{
+					adjs.add((Integer) edge.get(0));
+				}
+			}
+		}
+		
+		return adjs;
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("ÇëÊäÈë¶¥µãÊı");
-		int V = sc.nextInt(); //¶¥µãÊı
-		System.out.println("ÇëÊäÈë±ßÊı");
+		System.out.println("è¯·è¾“å…¥é¡¶ç‚¹æ•°");
+		int V = sc.nextInt(); //é¡¶ç‚¹æ•°
+		System.out.println("è¯·è¾“å…¥è¾¹æ•°");
 		int E = sc.nextInt();
-		System.out.println("ÇëÊäÈëÏàÓ¦±ßµÄ¶¥µã£¬ÓÃ¶ººÅ·Ö¸î");
+		System.out.println("è¯·è¾“å…¥ç›¸åº”è¾¹çš„é¡¶ç‚¹ï¼Œç”¨é€—å·åˆ†å‰²");
 		List<List> list = new ArrayList<List>();
 		for (int i = 0; i < E; i++) {
 			List<Integer> edge = new ArrayList<Integer>();
@@ -75,6 +93,9 @@ public class Graph {
 		Graph graph = new Graph(V, E, list);
 		graph.showAdj();
 		
+		List points = graph.getAllAdj(1);
+		System.out.println("--------ä¸´æ¥ç‚¹----------");
+		System.out.println(points.toString());
 	}
 	
 }
