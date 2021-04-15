@@ -4,35 +4,36 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Ï£¶ûÅÅĞò·¨
- * ²åÈëÅÅĞòµÄÒ»ÖÖ¸Ä½øËã·¨£¬»ù±¾Ë¼Ïë£ºÊ¹Êı×éÖĞÈÎÒâ¼ä¸ôÎªhµÄÔªËØ¶¼ÊÇÓĞĞòµÄ
- * ½«ĞèÒªÅÅĞòµÄĞòÁĞ»®·ÖÎªÈô¸É¸ö½ÏĞ¡µÄĞòÁĞ£¬¶ÔÕâĞ©ĞòÁĞ½øĞĞÖ±½Ó²åÈëÅÅĞò£¬Í¨¹ıÕâÑùµÄ²Ù×÷¿ÉÊ¹
- * ĞèÒªÅÅĞòµÄÊıÁĞ»ù±¾ÓĞĞò£¬×îºóÔÙÊ¹ÓÃÒ»´ÎÖ±½Ó²åÈëÅÅĞò¡£
+ * å¸Œå°”æ’åºæ³•
+ * æ’å…¥æ’åºçš„ä¸€ç§æ”¹è¿›ç®—æ³•ï¼ŒåŸºæœ¬æ€æƒ³ï¼šä½¿æ•°ç»„ä¸­ä»»æ„é—´éš”ä¸ºhçš„å…ƒç´ éƒ½æ˜¯æœ‰åºçš„
+ * å°†éœ€è¦æ’åºçš„åºåˆ—åˆ’åˆ†ä¸ºè‹¥å¹²ä¸ªè¾ƒå°çš„åºåˆ—ï¼Œå¯¹è¿™äº›åºåˆ—è¿›è¡Œç›´æ¥æ’å…¥æ’åºï¼Œé€šè¿‡è¿™æ ·çš„æ“ä½œå¯ä½¿
+ * éœ€è¦æ’åºçš„æ•°åˆ—åŸºæœ¬æœ‰åºï¼Œæœ€åå†ä½¿ç”¨ä¸€æ¬¡ç›´æ¥æ’å…¥æ’åºã€‚
+ * æ—¶é—´å¤æ‚åº¦ï¼šO(nlogn)
  * @author Kylin
  *
  */
 public class ShellSort {
 
 	/**
-	 * ĞèÒªÅÅĞòµÄÊı×éÔªËØ
+	 * éœ€è¦æ’åºçš„æ•°ç»„å…ƒç´ 
 	 * @param a
 	 */
 	public static void sort(int a[]){
 		int n = a.length;
-		int h = n/2; //²½³¤³õÊ¼ÎªĞòÁĞµÄÒ»°ë
+		int h = n/2; //æ­¥é•¿åˆå§‹ä¸ºåºåˆ—çš„ä¸€åŠ
 		int x, j;
 		while(h >= 1){
-			//½«Êı×é±äÎªhÓĞĞò
+			//å°†æ•°ç»„å˜ä¸ºhæœ‰åº
 			for (int i = h; i < n; i++) {
-				x = a[i]; //»ñÈ¡ĞòÁĞÖĞµÄÏÂÒ»¸öÊı¾İ
-				j = i-h; //Î»ÓÚÇ°µÚj¸öÔªËØµÄË÷Òı
+				x = a[i]; //è·å–åºåˆ—ä¸­çš„ä¸‹ä¸€ä¸ªæ•°æ®
+				j = i-h; //ä½äºå‰ç¬¬jä¸ªå…ƒç´ çš„ç´¢å¼•
 				while(j >= 0 && a[j] > x){
 					a[j+h] = a[j];
 					j = j-h;
 				}
 				a[j+h] = x;
 			}
-			h /= 2; //ÔöÁ¿Ëõ¼õÒ»°ë
+			h /= 2; //å¢é‡ç¼©å‡ä¸€åŠ
 		}
 	}
 	
@@ -40,17 +41,17 @@ public class ShellSort {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//ÊäÈëÓÃÓÚËæ»úÊı²úÉúµÄÊı¾İ
+		//è¾“å…¥ç”¨äºéšæœºæ•°äº§ç”Ÿçš„æ•°æ®
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int min = sc.nextInt();
 		int max = sc.nextInt();
 		int[] array = RandomGenerator.generate(n, min, max);
-		System.out.println("-----ÅÅĞòÇ°-------");
+		System.out.println("-----æ’åºå‰-------");
 		System.out.println(Arrays.toString(array));
 		
 		ShellSort.sort(array);
-		System.out.println("------ÅÅĞòºó------");
+		System.out.println("------æ’åºå------");
 		System.out.println(Arrays.toString(array));
 
 	}
