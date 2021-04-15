@@ -4,46 +4,40 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Ñ¡ÔñÅÅĞò£º
- * 	¶Ôn¸ö¼ÇÂ¼½øĞĞÉ¨Ãè£¬Ñ¡Ôñ×îĞ¡µÄ¼ÇÂ¼£¬½«ÆäÊä³ö£¬½Ó×ÅÔÚÊ£ÏÂµÄn-1µÄ¼ÇÂ¼ÖĞÉ¨Ãè£¬Ñ¡Ôñ×îĞ¡µÄ¼ÇÂ¼¡£¡£
- *  ½»»»´ÎÊıÎªn´Î£¬ÓëÊäÈëÏßĞÔÏà¹Ø£¬±È½Ï´ÎÊıN2/2
- * @author Kylin 
+ * ç®€å•é€‰æ‹©æ’åºï¼š
+ * é¦–å…ˆï¼Œæ‰¾åˆ°æ•°æ®ä¸­æœ€å°çš„å…ƒç´ ï¼›
+ * ç„¶åï¼Œå°†å®ƒä¸æ•°ç»„ä¸­ç¬¬ä¸€ä¸ªå…ƒç´ äº¤æ¢ä½ç½®ã€‚
+ * ä¹‹åï¼Œä¸æ–­çš„åœ¨å‰©ä½™å…ƒç´ ä¸­è¿›è¡Œé€‰æ‹©ã€‚
  *
+ * æ—¶é—´å¤æ‚åº¦ï¼šO(n^2)
  */
 public class SelectSort {
-	public static void sort(int[] a){
-		int t, min;
-		for (int i = 0; i < a.length - 1; i++) {
-			min = i;
-			for (int j = i+1; j < a.length; j++) {
-				if(a[j] < a[min]){
-					min = j;
-				}
-			}
-			t = a[i];
-			a[i] = a[min];
-			a[min] = t;
-			
-		}
-	}
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		//ÊäÈëÓÃÓÚËæ»úÊı²úÉúµÄÊı¾İ
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int min = sc.nextInt();
-		int max = sc.nextInt();
-		int[] array = RandomGenerator.generate(n, min, max);
-		System.out.println("-----ÅÅĞòÇ°-------");
-		System.out.println(Arrays.toString(array));
-		
-		SelectSort.sort(array);
-		System.out.println("------ÅÅĞòºó------");
-		System.out.println(Arrays.toString(array));
 
-	}
+    public static void main(String[] args) {
+        //è¾“å…¥ç”¨äºéšæœºæ•°äº§ç”Ÿçš„æ•°æ®
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int min = sc.nextInt();
+        int max = sc.nextInt();
+        int[] array = RandomGenerator.generate(n, min, max);
+        System.out.println("Before sort:\n" + Arrays.toString(array));
+
+        //é€‰æ‹©æ’åº
+        for (int i = 0; i < n-1; i++) {
+            // 1. é¦–å…ˆæ‰¾åˆ°æ•°æ®æœ€å°çš„é‚£ä¸ªå€¼çš„ä¸‹æ ‡
+            int minIndex = i;
+            for (int j = i+1; j < n; j++) {
+                if (array[j] < array[minIndex]){
+                    minIndex = j;
+                }
+            }
+
+            // 2. äº¤æ¢
+            int temp = array[i];
+            array[i] = array[minIndex];
+            array[minIndex] = temp;
+        }
+        System.out.println("After sort:\n" + Arrays.toString(array));
+    }
 
 }
