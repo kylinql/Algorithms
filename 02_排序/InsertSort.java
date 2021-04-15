@@ -5,6 +5,7 @@ import java.util.Scanner;
 /**
  * 插入排序的实现：
  *  索引左边的元素都是有序的，但是最终位置还不确定
+ *  时间复杂度：O(n)~O(n^2)，与原始输入数据的顺序有关
  */
 
 public class InsertSort {
