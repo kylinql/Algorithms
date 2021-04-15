@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 
 /**
- * Ã°ÅİÅÅĞò·¨
- * ´ÓºóÍùÇ°£¬»òÕß´ÓÇ°ÍùºóÒÀ´Î±éÀúÊı×é£¬µ±·¢ÏÖÏàÁÚÁ½¸ö¹Ø¼ü×ÖµÄ´ÎĞòÓÚÅÅĞòÒªÇóµÄ²»·ûºÏÊ±£¬
- * ¾Í½«ÕâÁ½¸ö¼ÇÂ¼½øĞĞ½»»»¡£ÕâÑù£¬¹Ø¼ü×Ö½«Öğ²½ÒÆ¶¯£¬¾ÍÏñÆøÅİ´ÓË®ÖĞ¸¡ÆğÀ´Ò»Ñù¡£
+ * å†’æ³¡æ’åºæ³•
+ * ä»åå¾€å‰ï¼Œæˆ–è€…ä»å‰å¾€åä¾æ¬¡éå†æ•°ç»„ï¼Œå½“å‘ç°ç›¸é‚»ä¸¤ä¸ªå…³é”®å­—çš„æ¬¡åºäºæ’åºè¦æ±‚çš„ä¸ç¬¦åˆæ—¶ï¼Œ
+ * å°±å°†è¿™ä¸¤ä¸ªè®°å½•è¿›è¡Œäº¤æ¢ã€‚è¿™æ ·ï¼Œå…³é”®å­—å°†é€æ­¥ç§»åŠ¨ï¼Œå°±åƒæ°”æ³¡ä»æ°´ä¸­æµ®èµ·æ¥ä¸€æ ·ã€‚
+ * æ—¶é—´å¤æ‚åº¦ï¼šO(n^2)
  * 
  * @author Kylin
  *
@@ -31,17 +32,17 @@ public class PopSort {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//ÊäÈëÓÃÓÚËæ»úÊı²úÉúµÄÊı¾İ
+		//è¾“å…¥ç”¨äºéšæœºæ•°äº§ç”Ÿçš„æ•°æ®
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int min = sc.nextInt();
 		int max = sc.nextInt();
 		int[] array = RandomGenerator.generate(n, min, max);
-		System.out.println("-----ÅÅĞòÇ°-------");
+		System.out.println("-----æ’åºå‰-------");
 		System.out.println(Arrays.toString(array));
 		
 		PopSort.sort(array);
-		System.out.println("------ÅÅĞòºó------");
+		System.out.println("------æ’åºå------");
 		System.out.println(Arrays.toString(array));
 	}
 
