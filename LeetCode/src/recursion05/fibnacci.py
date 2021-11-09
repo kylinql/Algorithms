@@ -6,8 +6,8 @@ Fibnacci 509
 F(0) = 0，F(1) = 1
 F(n) = F(n - 1) + F(n - 2)，其中 n > 1
 
-:Author: Shangmengqi@tsingj.com
-:Last Modified by: Shangmengqi@tsingj.com
+:Author: kylin
+:Last Modified by: Kylin.smq@qq.com
 """
 
 class Solution:
